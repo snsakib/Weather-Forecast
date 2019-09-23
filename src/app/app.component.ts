@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   resetChart() {
     this.tempData = [];
     this.dates = [];
-    d3.select("svg").remove();
+    d3.select("#forecast svg").remove();
   }
 
   drawChart() {
