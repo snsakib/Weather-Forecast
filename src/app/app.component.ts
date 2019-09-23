@@ -5,7 +5,6 @@ import { ForecastData } from "./forecast-data";
 import { ForecastService } from "./forecast.service";
 
 import * as d3 from "d3";
-import { removeDebugNodeFromIndex } from "@angular/core/src/debug/debug_node";
 
 @Component({
   selector: "app-root",
