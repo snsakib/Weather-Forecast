@@ -75,8 +75,8 @@ export class AppComponent implements OnInit {
     let svg = d3
       .select("#forecast")
       .append("svg")
-      .attr("width", svgWidth)
-      .attr("height", svgHeight)
+      .attr("preserveAspectRatio", "xMinYMin meet")
+      .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
       .style("display", "block")
       .style("margin", "auto");
 
