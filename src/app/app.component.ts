@@ -14,6 +14,8 @@ import * as d3 from "d3";
 export class AppComponent implements OnInit {
   weatherForm: FormGroup;
   selectedUserLocation: string;
+  svgWidth = 1000;
+  svgHeight = 400;
 
   tempData = [];
   dates = [];
@@ -32,10 +34,8 @@ export class AppComponent implements OnInit {
       bottom: 20,
       left: 100
     };
-    let svgWidth = 1000;
-    let svgHeight = 400;
-    let chartWidth = svgWidth - margin.left - margin.right;
-    let chartHeight = svgHeight - margin.top - margin.bottom;
+    let chartWidth = this.svgWidth - margin.left - margin.right;
+    let chartHeight = this.svgHeight - margin.top - margin.bottom;
 
     let barWidthScale = d3
       .scaleLinear()
@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
       .select("#forecast")
       .append("svg")
       .attr("preserveAspectRatio", "xMinYMin meet")
-      .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
+      .attr("viewBox", `0 0 ${this.svgWidth} ${this.svgHeight}`)
       .style("display", "block")
       .style("margin", "auto");
 
@@ -144,7 +144,7 @@ export class AppComponent implements OnInit {
     let xAxisLabel = svg
       .append("text")
       .html("Temperature (&#8451;)")
-      .attr("x", svgWidth / 2)
+      .attr("x", this.svgWidth / 2)
       .attr("y", margin.top / 2)
       .attr("font-size", "20px")
       .attr("text-anchor", "middle");
@@ -153,9 +153,20 @@ export class AppComponent implements OnInit {
       .append("text")
       .html("Time (Every 3 Hours)")
       .attr("x", margin.left / 2)
-      .attr("y", svgHeight / 2)
+      .attr("y", this.svgHeight / 2)
       .attr("font-size", "20px")
       .attr("transform", `translate(-160, 350)rotate(-90)`);
+
+    if (window.innerWidth < 577) {
+      xAxis.style("font-size", "20px");
+      yAxis.style("font-size", "20px");
+
+      xAxisLabel.attr("font-size", "30px");
+
+      yAxisLabel
+        .attr("font-size", "30px")
+        .attr("transform", `translate(-380, 550)rotate(-90)`);
+    }
   }
 
   constructor(
@@ -167,6 +178,10 @@ export class AppComponent implements OnInit {
     this.weatherForm = this.fb.group({
       userLocationInput: "London, UK"
     });
+
+    if (window.innerWidth < 577) {
+      this.svgHeight = 800;
+    }
   }
 
   onSubmit(event: Event) {
@@ -180,9 +195,6 @@ export class AppComponent implements OnInit {
           this.dates.push(new Date(response.list[i].dt_txt));
         }
         this.drawChart();
-        console.log(response);
-        console.log(this.tempData);
-        console.log(this.dates);
       });
   }
 }
