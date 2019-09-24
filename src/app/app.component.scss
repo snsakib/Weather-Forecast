@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import '../../node_modules/warp.css/scss/utils/variables';
 
 :host {
   display: block;
@@ -18,11 +18,11 @@ header {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #0b0d0e;
+  background-color: $background-color;
   width: 100%;
   height: auto;
   padding: 10px 20px;
-  color: white;
+  color: $normal-text-color;
 
   @media screen and (min-width: 576px) {
     padding: 10px 50px;
@@ -30,20 +30,6 @@ header {
 
   h1 {
     font-size: 25px;
-    background-image: -webkit-gradient(
-      linear,
-      left top, right bottom,
-      from(#f9d423),
-      to(#f83600)
-    );
-    background-image: linear-gradient(
-      to bottom right,
-      #f9d423 0%,
-      #f83600 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
   }
 
   #contact-links {

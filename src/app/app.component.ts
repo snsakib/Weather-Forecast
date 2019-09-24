@@ -176,7 +176,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.weatherForm = this.fb.group({
-      userLocationInput: "London, UK"
+      userLocationInput: "Dhaka, BD"
     });
 
     if (window.innerWidth < 577) {
