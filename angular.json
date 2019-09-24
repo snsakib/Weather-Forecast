@@ -47,6 +47,7 @@
             ],
             "styles": [
               "./node_modules/bootstrap/scss/bootstrap.scss",
+              "./node_modules/warp.css/scss/main.scss",
               "src/styles.scss"
             ],
             "scripts": [
